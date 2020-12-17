@@ -1,0 +1,9 @@
+{
+	"index.html": {
+		"resources": [
+			"static/js/manifest.15fb31ceaf10b51597d8.js",
+			"static/js/vendor.e71ed14cea39d97b5711.js",
+			"static/js/app.a1b4ac2a30f226ca75d0.js"
+		]
+	}
+}

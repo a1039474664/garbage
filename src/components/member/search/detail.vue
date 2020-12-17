@@ -1,0 +1,117 @@
+<template>
+  <div>
+    <div class="mainClass">
+      <div >
+        <span v-on:click="back"><img slot="icon"  src="../../../assets/images/garbage/back.png"></span>
+      </div>
+      <!-- 当用户未输入搜索时，显示图片及分类信息 -->
+      <div v-if="this.isDetail=='1'">
+        <div style="text-align: center;">
+          <span style="font-size: 20px;font-weight: 900;">可回收垃圾</span><br>
+          <img slot="icon" src="../../../assets/images/garbage/recyclable.png"><br>
+        </div>
+        &#160&#160&#160&#160&#160&#160&#160可回收垃圾主要包括废纸、塑料、玻璃、金属和布料五大类。<br>
+        <img slot="icon" src="../../../assets/images/garbage/course.png">废纸：主要包括报纸、期刊、图书、各种包装纸等。但是，要注意纸巾和厕所纸由于水溶性太强不可回收。<br>
+        <img slot="icon" src="../../../assets/images/garbage/course.png">塑料：各种塑料袋、塑料泡沫、塑料包装（快递包装纸是其他垃圾/干垃圾）、一次性塑料餐盒餐具、硬塑料、塑料牙刷、塑料杯子、矿泉水瓶等。<br>
+        <img slot="icon" src="../../../assets/images/garbage/course.png">玻璃：主要包括各种玻璃瓶、碎玻璃片、暖瓶等。（镜子是其他垃圾/干垃圾）<br>
+        <img slot="icon" src="../../../assets/images/garbage/course.png">金属物：主要包括易拉罐、罐头盒等。<br>
+        <img slot="icon" src="../../../assets/images/garbage/course.png">布料：主要包括废弃衣服、桌布、洗脸巾、书包、鞋等。<br>
+        <div style="text-align: center;">
+          <img slot="icon" class="imgClass" src="../../../assets/images/garbage/recyclableDetail.jpg">
+        </div>
+      </div>
+      <div v-else-if="this.isDetail=='2'">
+        <div style="text-align: center;">
+          <span style="font-size: 20px;font-weight: 900;">厨余（湿垃圾）</span><br>
+          <img slot="icon"  src="../../../assets/images/garbage/houseHoldFood.png">
+        </div>
+        <p>&#160&#160&#160&#160&#160&#160&#160厨余垃圾是指居民日常生活及食品加工、饮食服务、单位供餐等活动中产生的垃圾,包括丢弃不用的菜叶、剩菜、剩饭、果皮、蛋壳、茶渣、骨头等，其主要来源为家庭厨房、餐厅、饭店、食堂、市场及其他与食品加工有关的行业。</p>
+        <div style="text-align: center;">
+          <img slot="icon" class="imgClass" src="../../../assets/images/garbage/houseHoldFoodDetail2.jpg">
+        </div>
+        <p>注意：由于餐厨垃圾需要粉碎，像大棒骨、贝壳、榴莲壳这样的垃圾,虽然与食物有关，还是应该归属其他垃圾</p>
+        <div style="text-align: center;">
+          <img slot="icon" class="imgClass" src="../../../assets/images/garbage/houseHoldFoodDetail1.jpg">
+        </div>
+      </div>
+      <div v-else-if="this.isDetail=='3'">
+        <div style="text-align: center;">
+          <span style="font-size: 20px;font-weight: 900;">有害垃圾</span><br>
+          <img slot="icon"  src="../../../assets/images/garbage/hazardous.png"><br>
+        </div>
+        <p>&#160&#160&#160&#160&#160&#160&#160有害垃圾，是指对人体健康或者自然环境造成直接或者潜在危害的生活垃圾，包括废充电电池、废扣式电池、废灯管、弃置药品、废杀虫剂（容器）、废油漆（容器）、废日用化学品、废水银产品等，要放进红色垃圾桶。</p>
+        <p>&#160&#160&#160&#160&#160&#160&#160<span style="font-size: 20px;font-weight: 900;">注意</span>：过期化妆品、电子产品，都属于有害垃圾，一次性电池是其他垃圾</p>
+        <div style="text-align: center;">
+          <img slot="icon" class="imgClass" src="../../../assets/images/garbage/hazardousDetail.jpg">
+        </div>
+      </div>
+      <div class="textClass" v-else-if="this.isDetail=='4'">
+        <div style="text-align: center;">
+          <span style="font-size: 20px;font-weight: 900;">其它（干垃圾）</span><br>
+          <img slot="icon" src="../../../assets/images/garbage/other.png">
+        </div>
+        <span style="font-size: 20px;font-weight: 900;color: #b3e19d">其他垃圾</span>（上海称干垃圾）包括除上述几类垃圾之外的砖瓦陶瓷、渣土、
+        卫生间废纸、纸巾等难以回收的废弃物及尘土、食品袋（盒）。采取卫生填埋可有效减少对地下水、地表水、土壤及空气的污染。<br>
+        <div style="text-align: center;">
+          <img slot="icon" class="imgClass" src="../../../assets/images/garbage/otherDetail.png">
+        </div>
+        <span style="font-size: 20px;font-weight: 900;">卫生纸</span>：厕纸、卫生纸遇水即溶，不算可回收的“纸张”，类似的还有烟盒等。<br>
+        <span style="font-size: 20px;font-weight: 900;">餐厨垃圾装袋</span>：常用的塑料袋，即使是可以降解的也远比餐厨垃圾更难腐蚀。此外塑料袋本身是可回收垃圾。正确做法应该是将餐厨垃圾倒入垃圾桶，塑料袋另扔进“可回收垃圾”桶。<br>
+        <span style="font-size: 20px;font-weight: 900;">果壳</span>：在垃圾分类中，“果壳瓜皮”的标识就是花生壳，的确属于厨余垃圾。家里用剩的废弃食用油，也归类在“厨余垃圾”。<br>
+        <span style="font-size: 20px;font-weight: 900;">尘土</span>：在垃圾分类中，尘土属于“其它垃圾”，但残枝落叶属于“厨余垃圾”，包括家里开败的鲜花等。<br>
+      </div>
+    </div>
+    <div style="text-align: center;color: #cccccc;margin-top: 4px;">
+      <span>本查询系统仅供参考，具体分类要求以当地政府主管部门为准</span>
+    </div>
+  </div>
+</template>
+<script>
+  export default {
+    data() {
+      return {
+        isShow:false,
+        isDetail:""
+      };
+    },
+    methods: {
+      recyclable(){
+        this.isDetail=this.$route.params&&this.$route.params.id;
+      },
+      back(){
+        this.$router.go(-1);//返回上一层
+      }
+    },
+    mounted() {
+      //一开始会执行
+      this.recyclable();
+    }
+  }
+</script>
+<style>
+  .headerClass{
+    border: #e8e8e8 solid 1px;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 10px;
+    background-color: white;
+  }
+  .mainClass{
+    border: #e8e8e8 solid 1px;
+    margin-top: 2px;
+    margin-left: 5px;
+    margin-right: 5px;
+    height: 100%;
+    background-color: white;
+  }
+  .imgClass {
+    width: 100%;
+    display: block;
+    text-align: center;
+  }
+  .textClass{
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+</style>
