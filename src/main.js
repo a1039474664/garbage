@@ -13,12 +13,13 @@ Vue.use(ElementUI)
 Vue.use(api)
 
 import Mui from 'vue-awesome-mui';
+
 Vue.use(Mui);
 Vue.prototype.global = global
 
 new Vue({
   el: '#app',
   router,
-  store:stores,          //-----全局变量
+  store: stores,          //-----全局变量
   render: h => h(App)
 });

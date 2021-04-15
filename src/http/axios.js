@@ -2,7 +2,7 @@ import axios from 'axios';
 import config from './config';
 import Cookies from "js-cookie";
 import router from '@/router'
-import { Message } from 'element-ui'
+import {Message} from 'element-ui'
 // 使用vuex做全局loading时使用
 // import store from '@/store'
 
@@ -94,11 +94,11 @@ export default function $axios(options) {
       },
       err => {
         if (err && err.response) {
-         /* if(err.response.status==401||err.response.status==403){
-            sessionStorage.removeItem("user")
-            Message.error({message:'登陆过期请重新登陆！',type: 'warning',center: true});
-            router.push("/login")
-          }*/
+          /* if(err.response.status==401||err.response.status==403){
+             sessionStorage.removeItem("user")
+             Message.error({message:'登陆过期请重新登陆！',type: 'warning',center: true});
+             router.push("/login")
+           }*/
           switch (err.response.status) {
             case 400:
               err.message = '请求错误'
@@ -110,7 +110,7 @@ export default function $axios(options) {
             case 403:
               err.message = '拒绝访问'
               sessionStorage.removeItem("user")
-              Message.error({message:'登陆过期请重新登陆！',type: 'warning',center: true});
+              Message.error({message: '登陆过期请重新登陆！', type: 'warning', center: true});
               router.push("/login")
               break
             case 404:

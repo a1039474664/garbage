@@ -1,5 +1,4 @@
-
-import { baseUrl } from '@/utils/global'
+import {baseUrl} from '@/utils/global'
 
 export default {
   method: 'get',

@@ -5,8 +5,9 @@
     </el-page-header>
     <div>
       <div class="user-header">
-        <input type="file" name="image" accept="image/*" @change='onchangeImgFun' class="header-upload-btn user-header-com">
-        <img  alt="" :src='imgStr' class="user-header-img user-header-com">
+        <input type="file" name="image" accept="image/*" @change='onchangeImgFun'
+               class="header-upload-btn user-header-com">
+        <img alt="" :src='imgStr' class="user-header-img user-header-com">
       </div>
       <p class="tip">更改头像</p>
       <ul>
@@ -18,10 +19,10 @@
           &#160&#160性别
           <i class="el-icon-arrow-right" style="float: right;margin-top: 18px;margin-right: 20px;"></i>
         </li>
-<!--        <li>
-          &#160&#160生日
-          <i class="el-icon-arrow-right" style="float: right;margin-top: 18px;margin-right: 20px;"></i>
-        </li>-->
+        <!--        <li>
+                  &#160&#160生日
+                  <i class="el-icon-arrow-right" style="float: right;margin-top: 18px;margin-right: 20px;"></i>
+                </li>-->
         <li @click="toSetting()">
           &#160&#160手机号码
           <i class="el-icon-arrow-right" style="float: right;margin-top: 18px;margin-right: 20px;"></i>
@@ -32,6 +33,7 @@
 </template>
 <script>
   import cropper from "@/views/cropper"
+
   export default {
     components: {
       cropper
@@ -44,10 +46,10 @@
         errorStr: '',
         size: 'small',
         user: "",
-        nickname :"",
+        nickname: "",
         dataFormRules: {
           name: [
-            { required: true, message: '请输入名称', trigger: 'blur' }
+            {required: true, message: '请输入名称', trigger: 'blur'}
           ]
         },
         // 新增编辑界面数据
@@ -62,31 +64,31 @@
         }
       };
     },
-    methods:{
-      back(){
+    methods: {
+      back() {
         this.$router.go(-1);//返回上一层
       },
-      toHistory: function() {
+      toHistory: function () {
       },
-      newHeaderImage(newImg){
+      newHeaderImage(newImg) {
         this.headerImage = newImg;
       },
-      toCall(){
-        this.$router.push({path:'/call'});
+      toCall() {
+        this.$router.push({path: '/call'});
       },
-      toSetting(){
-        this.$router.push({path:'/setting'})
+      toSetting() {
+        this.$router.push({path: '/setting'})
       },
-      findUserByName(){
+      findUserByName() {
         let name = sessionStorage.getItem("user")
-        if(name!=null){
-          this.$api.user.findByName({'name':name}).then((res) => {
-            if(res.code == 200) {
-              this.user=res.data.name;
-              if(res.data.nickname!=""&&res.data.nickname!=null){
-                this.nickname=res.data.nickname;
-              }else{
-                this.nickname=res.data.name;
+        if (name != null) {
+          this.$api.user.findByName({'name': name}).then((res) => {
+            if (res.code == 200) {
+              this.user = res.data.name;
+              if (res.data.nickname != "" && res.data.nickname != null) {
+                this.nickname = res.data.nickname;
+              } else {
+                this.nickname = res.data.name;
               }
             } else {
               this.$message({message: '操作失败, ' + res.msg, type: 'error'})
@@ -94,7 +96,7 @@
           })
         }
       },
-      onchangeImgFun (e) {
+      onchangeImgFun(e) {
         var file = e.target.files[0]
         console.log(file)
         // 获取图片的大小，做大小限制有用
@@ -109,7 +111,7 @@
           // 开始渲染选择的图片
           // 本地路径方法 1
           // this.imgStr = window.URL.createObjectURL(e.target.files[0])
-           console.log(window.URL.createObjectURL(e.target.files[0]))                  // 获取当前文件的信息
+          console.log(window.URL.createObjectURL(e.target.files[0]))                  // 获取当前文件的信息
 
           //base64方法 2
           var reader = new FileReader()
@@ -130,12 +132,12 @@
       /**
        * 头像上传给后台
        * */
-      handleUploadHead(file){
+      handleUploadHead(file) {
         let picData = new FormData();
-        picData.append('file',file,file.name);
-        this.$api.user.updateHeaderImg({'file':file,'fileName':file.name}).then((res) => {
-          if(res.code == 200) {
-            this.$notify.success({title: 'success',message: '头像图片上传成功'});
+        picData.append('file', file, file.name);
+        this.$api.user.updateHeaderImg({'file': file, 'fileName': file.name}).then((res) => {
+          if (res.code == 200) {
+            this.$notify.success({title: 'success', message: '头像图片上传成功'});
           } else {
             this.$message({message: '操作失败, ' + res.msg, type: 'error'})
           }
@@ -150,40 +152,46 @@
 </script>
 <style>
 
-  ul{
+  ul {
     width: 100%;
     line-height: 50px;
   }
-  li{
+
+  li {
     background-color: white;
     margin-top: 3px;
   }
-  .user-header{
+
+  .user-header {
     position: relative;
     display: -webkit-flex;
-    align-items:center;
-    justify-content:center;
+    align-items: center;
+    justify-content: center;
   }
-  .user-header-com{
+
+  .user-header-com {
     border-radius: 30px;
-    width:60px;
-    height:60px;
+    width: 60px;
+    height: 60px;
   }
-  .header-upload-btn{
+
+  .header-upload-btn {
     position: absolute;
     display: -webkit-flex;
-    align-items:center;
-    justify-content:center;
+    align-items: center;
+    justify-content: center;
     opacity: 0;
     /* 通过定位把input放在img标签上面，通过不透明度隐藏 */
   }
-  .tip{
+
+  .tip {
     font-size: 14px;
     color: #666;
     text-align: center;
   }
+
   /* error是用于错误提示 */
-  .error{
+  .error {
     font-size: 12px;
     color: tomato;
     margin-left: 10px;

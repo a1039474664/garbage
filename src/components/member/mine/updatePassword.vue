@@ -4,7 +4,8 @@
     </el-page-header>
     <div style="height: 12px;"></div>
     <div style="background-color: white;height: 100%;">
-      <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="80px" style="padding-top: 20px;padding-right: 20px;" class="demo-ruleForm">
+      <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="80px"
+               style="padding-top: 20px;padding-right: 20px;" class="demo-ruleForm">
         <el-form-item label="旧密码" prop="oldPass">
           <el-input type="password" v-model="ruleForm.oldPass" autocomplete="off"></el-input>
         </el-form-item>
@@ -46,13 +47,13 @@
         },
         rules: {
           oldPass: [
-            { required: true, message: '请输入旧密码', trigger: 'blur' },
+            {required: true, message: '请输入旧密码', trigger: 'blur'},
           ],
           newPass: [
-            { required: true, message: '请输入新密码', trigger: 'blur' },
+            {required: true, message: '请输入新密码', trigger: 'blur'},
           ],
           checkPass: [
-            { validator: validateCheckPass, required: true,trigger: 'blur' }
+            {validator: validateCheckPass, required: true, trigger: 'blur'}
           ]
 
         }
@@ -64,11 +65,11 @@
           if (valid) {
             let name = sessionStorage.getItem("user")
             //先校验旧密码是否正确
-            let params = {userName:name,oldPass:this.ruleForm.oldPass,newPass:this.ruleForm.newPass}
+            let params = {userName: name, oldPass: this.ruleForm.oldPass, newPass: this.ruleForm.newPass}
             this.$api.user.updatePw(params).then((res) => {
-              if(res.code == 200) {
+              if (res.code == 200) {
                 this.$message({message: '修改成功,请重新登录！', type: 'success'})
-                this.$router.push({path:'/login'});
+                this.$router.push({path: '/login'});
               } else {
                 this.$message({message: '旧密码不正确', type: 'error'})
                 return
@@ -83,7 +84,7 @@
       resetForm(formName) {
         this.$refs[formName].resetFields();
       },
-      back(){
+      back() {
         this.$router.go(-1);//返回上一层
       },
     },
@@ -93,7 +94,7 @@
   }
 </script>
 <style>
-  .top{
+  .top {
     height: 100%;
     padding-top: 10px;
   }

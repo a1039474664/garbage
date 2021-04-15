@@ -6,11 +6,11 @@ import axios from '../axios'
 
 // 保存
 export const findAll = (params) => {
-    return axios({
-        url: '/tGcHistory/findAll',
-        method: 'post',
-      params
-    })
+  return axios({
+    url: '/tGcHistory/findAll',
+    method: 'post',
+    params
+  })
 }
 // 删除
 export const deleteByIds = (data) => {

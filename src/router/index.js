@@ -11,6 +11,7 @@ import login from '@/components/member/login/login'
 import register from '@/components/member/login/register'
 import detail from '@/components/member/search/detail'
 import personal from '@/views/personal/index'
+
 Vue.use(Router)
 
 const router = new Router({
@@ -18,13 +19,13 @@ const router = new Router({
   base: __dirname,
   //路由映射map
   routes: [
-    { path: '/', redirect: '/memberHome/searchPage' },
-    { path: '*', redirect: '/memberHome/searchPage' },
+    {path: '/', redirect: '/memberHome/searchPage'},
+    {path: '*', redirect: '/memberHome/searchPage'},
     {
       path: '/memberHome',
       name: 'memberHome',
       component: memberHome,
-      children:[
+      children: [
         {
           path: '/memberHome/searchPage',
           name: 'searchPage',

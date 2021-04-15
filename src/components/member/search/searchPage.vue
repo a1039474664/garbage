@@ -1,7 +1,7 @@
 <template>
   <el-container>
     <el-header height="120px;" class="headerClass">
-      <div style="margin-top: 15px;font-size: 20px;text-align: center;color: white;"><span >首页</span></div>
+      <div style="margin-top: 15px;font-size: 20px;text-align: center;color: white;"><span>首页</span></div>
       <el-form :inline="true" :model="formInline" class="demo-form-inline" style="text-align: center;margin-top: 20px;">
         <el-autocomplete
           popper-class="my-autocomplete"
@@ -26,18 +26,19 @@
       </el-form>
       <div class="hotDiv">
         热门搜索：
-          <span v-for="(item ,i) in garbageHotList" class="hotList" slot="suffix" @click="hotClick(item.garbageName)"> {{item.garbageName}} |</span>
+        <span v-for="(item ,i) in garbageHotList" class="hotList" slot="suffix" @click="hotClick(item.garbageName)"> {{item.garbageName}} |</span>
       </div>
     </el-header>
     <el-main class="mainClass">
       <!-- 当用户未输入搜索时，显示图片及分类信息 -->
       <div v-if="this.formInline.name==''||this.garbageType==''" style="text-align: center;">
-        <img slot="icon"  src="../../../assets/images/garbage/type.jpg"><br>
+        <img slot="icon" src="../../../assets/images/garbage/type.jpg"><br>
         <el-row :gutter="12">
           <el-col :span="12" @click.native="recyclable('1')">
             <el-card shadow="hover">
-              <div ><img slot="icon" src="../../../assets/images/garbage/recyclable.png"></div>
-              <div >可回收物<br><span style="color: #E1E1E1;font-size: 12px;letter-spacing:-0.1em;">Recyclable Waste</span></div>
+              <div><img slot="icon" src="../../../assets/images/garbage/recyclable.png"></div>
+              <div>可回收物<br><span style="color: #E1E1E1;font-size: 12px;letter-spacing:-0.1em;">Recyclable Waste</span>
+              </div>
             </el-card>
           </el-col>
           <el-col :span="12" @click.native="recyclable('2')">
@@ -51,7 +52,8 @@
           <el-col :span="12" @click.native="recyclable('3')">
             <el-card shadow="hover">
               <div><img slot="icon" src="../../../assets/images/garbage/hazardous.png"></div>
-              <div>有害垃圾<br><span style="color: #E1E1E1;font-size: 12px;letter-spacing:-0.1em;">Hazardous Waste</span></div>
+              <div>有害垃圾<br><span style="color: #E1E1E1;font-size: 12px;letter-spacing:-0.1em;">Hazardous Waste</span>
+              </div>
             </el-card>
           </el-col>
           <el-col :span="12" @click.native="recyclable('4')">
@@ -65,7 +67,8 @@
 
       <!-- 当用户输入搜索时，显示搜索结果 -->
       <div v-else>
-        <div style="font-size: 20px;font-weight: 900;text-align: center; "><span>{{formInline.name}}</span></div><br>
+        <div style="font-size: 20px;font-weight: 900;text-align: center; "><span>{{formInline.name}}</span></div>
+        <br>
         <div v-if="this.garbageType=='1'">
           <div style="text-align: center;">
             <img slot="icon" src="../../../assets/images/garbage/recyclable.png"><br>
@@ -133,9 +136,10 @@
             </div>
             <div style="text-align: center;">
               <span style="font-size: 20px;font-weight: 900;">厨余（湿垃圾）</span><br>
-              <img slot="icon"  src="../../../assets/images/garbage/houseHoldFood.png">
+              <img slot="icon" src="../../../assets/images/garbage/houseHoldFood.png">
             </div>
-            <p>&#160&#160&#160&#160&#160&#160&#160厨余垃圾是指居民日常生活及食品加工、饮食服务、单位供餐等活动中产生的垃圾,包括丢弃不用的菜叶、剩菜、剩饭、果皮、蛋壳、茶渣、骨头等，其主要来源为家庭厨房、餐厅、饭店、食堂、市场及其他与食品加工有关的行业。</p>
+            <p>
+              &#160&#160&#160&#160&#160&#160&#160厨余垃圾是指居民日常生活及食品加工、饮食服务、单位供餐等活动中产生的垃圾,包括丢弃不用的菜叶、剩菜、剩饭、果皮、蛋壳、茶渣、骨头等，其主要来源为家庭厨房、餐厅、饭店、食堂、市场及其他与食品加工有关的行业。</p>
             <div style="text-align: center;">
               <img slot="icon" class="imgClass" src="../../../assets/images/garbage/houseHoldFoodDetail2.jpg">
             </div>
@@ -145,10 +149,12 @@
             </div>
             <div style="text-align: center;">
               <span style="font-size: 20px;font-weight: 900;">有害垃圾</span><br>
-              <img slot="icon"  src="../../../assets/images/garbage/hazardous.png"><br>
+              <img slot="icon" src="../../../assets/images/garbage/hazardous.png"><br>
             </div>
-            <p>&#160&#160&#160&#160&#160&#160&#160有害垃圾，是指对人体健康或者自然环境造成直接或者潜在危害的生活垃圾，包括废充电电池、废扣式电池、废灯管、弃置药品、废杀虫剂（容器）、废油漆（容器）、废日用化学品、废水银产品等，要放进红色垃圾桶。</p>
-            <p>&#160&#160&#160&#160&#160&#160&#160<span style="font-size: 20px;font-weight: 900;">注意</span>：过期化妆品、电子产品，都属于有害垃圾，一次性电池是其他垃圾</p>
+            <p>
+              &#160&#160&#160&#160&#160&#160&#160有害垃圾，是指对人体健康或者自然环境造成直接或者潜在危害的生活垃圾，包括废充电电池、废扣式电池、废灯管、弃置药品、废杀虫剂（容器）、废油漆（容器）、废日用化学品、废水银产品等，要放进红色垃圾桶。</p>
+            <p>&#160&#160&#160&#160&#160&#160&#160<span style="font-size: 20px;font-weight: 900;">注意</span>：过期化妆品、电子产品，都属于有害垃圾，一次性电池是其他垃圾
+            </p>
             <div style="text-align: center;">
               <img slot="icon" class="imgClass" src="../../../assets/images/garbage/hazardousDetail.jpg">
             </div>
@@ -179,9 +185,9 @@
         formInline: {
           name: ''
         },
-        garbageValue:"",
-        garbageType:"",
-        garbageHotList:null
+        garbageValue: "",
+        garbageType: "",
+        garbageHotList: null
       };
     },
     methods: {
@@ -210,21 +216,21 @@
         this.formInline = {
           name: ''
         }
-        this.garbageValue="",
-        this.garbageType=""
+        this.garbageValue = "",
+          this.garbageType = ""
       },
-      onSubmit(){
-        if(this.formInline.name!=""){
+      onSubmit() {
+        if (this.formInline.name != "") {
           //点击查询时查找数据
-          this.$api.garbage.findByName({'name':this.formInline.name}).then((res) => {
-            if(res.code == 200) {
-              if(res.data!=null){
-                this.garbageValue=res.data.garbageName;
-                this.garbageType=res.data.type;
+          this.$api.garbage.findByName({'name': this.formInline.name}).then((res) => {
+            if (res.code == 200) {
+              if (res.data != null) {
+                this.garbageValue = res.data.garbageName;
+                this.garbageType = res.data.type;
                 this.findAllHistory()
-              }else{
-                this.garbageValue=this.formInline.name;
-                this.garbageType="5";
+              } else {
+                this.garbageValue = this.formInline.name;
+                this.garbageType = "5";
               }
 
             } else {
@@ -233,39 +239,39 @@
           })
         }
       },
-      findAllHistory(){
+      findAllHistory() {
         //一开始加载搜索历史数据
         this.$api.history.findAll().then((res) => {
-          if(res.code == 200) {
+          if (res.code == 200) {
             this.allHistory = res.data;
           } else {
           }
         })
       },
-      findAllGarbage(){
+      findAllGarbage() {
         //一开始加载所有分类数据
         this.$api.garbage.findAll().then((res) => {
-          if(res.code == 200) {
+          if (res.code == 200) {
             this.allGarbage = res.data;
           } else {
           }
         })
       },
-      findHotGarbage(){
+      findHotGarbage() {
         //一开始加载热门数据
         this.$api.garbage.findHot().then((res) => {
-          if(res.code == 200) {
+          if (res.code == 200) {
             this.garbageHotList = res.data;
           } else {
           }
         })
       },
-      hotClick(e){
-        this.formInline.name=e;
+      hotClick(e) {
+        this.formInline.name = e;
         this.onSubmit();
       },
-      recyclable(e){
-        this.$router.push({path:'/detail/'+e});
+      recyclable(e) {
+        this.$router.push({path: '/detail/' + e});
       }
     },
     mounted() {
@@ -280,7 +286,7 @@
 <style>
 
 
-  .headerClass{
+  .headerClass {
     border: #e8e8e8 solid 1px;
     margin-left: 5px;
     margin-right: 5px;
@@ -288,7 +294,8 @@
     background-image: url("../../../assets/images/garbage/background1.jpg");
     background-size: cover;
   }
-  .mainClass{
+
+  .mainClass {
     border: #e8e8e8 solid 1px;
     margin-top: -4px;
     margin-left: 5px;
@@ -296,10 +303,12 @@
     height: 100%;
     background-color: white;
   }
-  .hotDiv{
+
+  .hotDiv {
     padding-bottom: 10px;
   }
-  .hotList{
+
+  .hotList {
     color: #35495e;
   }
 

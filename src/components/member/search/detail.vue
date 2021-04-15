@@ -1,8 +1,8 @@
 <template>
   <div>
     <div class="mainClass">
-      <div >
-        <span v-on:click="back"><img slot="icon"  src="../../../assets/images/garbage/back.png"></span>
+      <div>
+        <span v-on:click="back"><img slot="icon" src="../../../assets/images/garbage/back.png"></span>
       </div>
       <!-- 当用户未输入搜索时，显示图片及分类信息 -->
       <div v-if="this.isDetail=='1'">
@@ -23,9 +23,10 @@
       <div v-else-if="this.isDetail=='2'">
         <div style="text-align: center;">
           <span style="font-size: 20px;font-weight: 900;">厨余（湿垃圾）</span><br>
-          <img slot="icon"  src="../../../assets/images/garbage/houseHoldFood.png">
+          <img slot="icon" src="../../../assets/images/garbage/houseHoldFood.png">
         </div>
-        <p>&#160&#160&#160&#160&#160&#160&#160厨余垃圾是指居民日常生活及食品加工、饮食服务、单位供餐等活动中产生的垃圾,包括丢弃不用的菜叶、剩菜、剩饭、果皮、蛋壳、茶渣、骨头等，其主要来源为家庭厨房、餐厅、饭店、食堂、市场及其他与食品加工有关的行业。</p>
+        <p>
+          &#160&#160&#160&#160&#160&#160&#160厨余垃圾是指居民日常生活及食品加工、饮食服务、单位供餐等活动中产生的垃圾,包括丢弃不用的菜叶、剩菜、剩饭、果皮、蛋壳、茶渣、骨头等，其主要来源为家庭厨房、餐厅、饭店、食堂、市场及其他与食品加工有关的行业。</p>
         <div style="text-align: center;">
           <img slot="icon" class="imgClass" src="../../../assets/images/garbage/houseHoldFoodDetail2.jpg">
         </div>
@@ -37,10 +38,12 @@
       <div v-else-if="this.isDetail=='3'">
         <div style="text-align: center;">
           <span style="font-size: 20px;font-weight: 900;">有害垃圾</span><br>
-          <img slot="icon"  src="../../../assets/images/garbage/hazardous.png"><br>
+          <img slot="icon" src="../../../assets/images/garbage/hazardous.png"><br>
         </div>
-        <p>&#160&#160&#160&#160&#160&#160&#160有害垃圾，是指对人体健康或者自然环境造成直接或者潜在危害的生活垃圾，包括废充电电池、废扣式电池、废灯管、弃置药品、废杀虫剂（容器）、废油漆（容器）、废日用化学品、废水银产品等，要放进红色垃圾桶。</p>
-        <p>&#160&#160&#160&#160&#160&#160&#160<span style="font-size: 20px;font-weight: 900;">注意</span>：过期化妆品、电子产品，都属于有害垃圾，一次性电池是其他垃圾</p>
+        <p>
+          &#160&#160&#160&#160&#160&#160&#160有害垃圾，是指对人体健康或者自然环境造成直接或者潜在危害的生活垃圾，包括废充电电池、废扣式电池、废灯管、弃置药品、废杀虫剂（容器）、废油漆（容器）、废日用化学品、废水银产品等，要放进红色垃圾桶。</p>
+        <p>&#160&#160&#160&#160&#160&#160&#160<span style="font-size: 20px;font-weight: 900;">注意</span>：过期化妆品、电子产品，都属于有害垃圾，一次性电池是其他垃圾
+        </p>
         <div style="text-align: center;">
           <img slot="icon" class="imgClass" src="../../../assets/images/garbage/hazardousDetail.jpg">
         </div>
@@ -57,7 +60,8 @@
         </div>
         <span style="font-size: 20px;font-weight: 900;">卫生纸</span>：厕纸、卫生纸遇水即溶，不算可回收的“纸张”，类似的还有烟盒等。<br>
         <span style="font-size: 20px;font-weight: 900;">餐厨垃圾装袋</span>：常用的塑料袋，即使是可以降解的也远比餐厨垃圾更难腐蚀。此外塑料袋本身是可回收垃圾。正确做法应该是将餐厨垃圾倒入垃圾桶，塑料袋另扔进“可回收垃圾”桶。<br>
-        <span style="font-size: 20px;font-weight: 900;">果壳</span>：在垃圾分类中，“果壳瓜皮”的标识就是花生壳，的确属于厨余垃圾。家里用剩的废弃食用油，也归类在“厨余垃圾”。<br>
+        <span
+          style="font-size: 20px;font-weight: 900;">果壳</span>：在垃圾分类中，“果壳瓜皮”的标识就是花生壳，的确属于厨余垃圾。家里用剩的废弃食用油，也归类在“厨余垃圾”。<br>
         <span style="font-size: 20px;font-weight: 900;">尘土</span>：在垃圾分类中，尘土属于“其它垃圾”，但残枝落叶属于“厨余垃圾”，包括家里开败的鲜花等。<br>
       </div>
     </div>
@@ -70,15 +74,15 @@
   export default {
     data() {
       return {
-        isShow:false,
-        isDetail:""
+        isShow: false,
+        isDetail: ""
       };
     },
     methods: {
-      recyclable(){
-        this.isDetail=this.$route.params&&this.$route.params.id;
+      recyclable() {
+        this.isDetail = this.$route.params && this.$route.params.id;
       },
-      back(){
+      back() {
         this.$router.go(-1);//返回上一层
       }
     },
@@ -89,14 +93,15 @@
   }
 </script>
 <style>
-  .headerClass{
+  .headerClass {
     border: #e8e8e8 solid 1px;
     margin-left: 5px;
     margin-right: 5px;
     margin-bottom: 10px;
     background-color: white;
   }
-  .mainClass{
+
+  .mainClass {
     border: #e8e8e8 solid 1px;
     margin-top: 2px;
     margin-left: 5px;
@@ -104,12 +109,14 @@
     height: 100%;
     background-color: white;
   }
+
   .imgClass {
     width: 100%;
     display: block;
     text-align: center;
   }
-  .textClass{
+
+  .textClass {
     margin-left: 10px;
     margin-right: 10px;
   }

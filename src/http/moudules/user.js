@@ -6,35 +6,35 @@ import axios from '../axios'
 
 // 保存
 export const save = (data) => {
-    return axios({
-        url: '/user/save',
-        method: 'post',
-        data
-    })
+  return axios({
+    url: '/user/save',
+    method: 'post',
+    data
+  })
 }
 // 删除
 export const batchDelete = (data) => {
-    return axios({
-        url: '/user/delete',
-        method: 'post',
-        data
-    })
+  return axios({
+    url: '/user/delete',
+    method: 'post',
+    data
+  })
 }
 // 分页查询
 export const findPage = (data) => {
-    return axios({
-        url: '/user/findPage',
-        method: 'post',
-        data
-    })
+  return axios({
+    url: '/user/findPage',
+    method: 'post',
+    data
+  })
 }
 // 查找用户的菜单权限标识集合
 export const findPermissions = (params) => {
-    return axios({
-        url: '/user/findPermissions',
-        method: 'get',
-        params
-    })
+  return axios({
+    url: '/user/findPermissions',
+    method: 'get',
+    params
+  })
 }
 
 
@@ -53,7 +53,7 @@ export const appLogin = data => {
     data
   })
 }
-export const updatePw= (params) => {
+export const updatePw = (params) => {
   return axios({
     url: '/user/updatePassword',
     method: 'get',
@@ -61,7 +61,7 @@ export const updatePw= (params) => {
   })
 }
 
-export const sendSms= (params) => {
+export const sendSms = (params) => {
   return axios({
     url: 'sendSms',
     method: 'get',

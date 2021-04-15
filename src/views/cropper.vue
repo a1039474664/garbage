@@ -23,49 +23,49 @@
 <script>
   import Cropper from 'cropperjs'  //引入插件
   export default {
-    props:{
-      headerImage:{   //从user.vue父组件传过来数据库图片，即用户从本地上传的图片
-        type:String,
-        default:''
+    props: {
+      headerImage: {   //从user.vue父组件传过来数据库图片，即用户从本地上传的图片
+        type: String,
+        default: ''
       }
     },
-    data () {
+    data() {
       return {
-        picValue:'',
-        cropper:'',
-        croppable:false,
-        panel:false,
-        url:'',
-        postHeaderImg:''
+        picValue: '',
+        cropper: '',
+        croppable: false,
+        panel: false,
+        url: '',
+        postHeaderImg: ''
       }
     },
-    mounted () {
+    mounted() {
       //初始化这个裁剪框
       var self = this;
       var image = document.getElementById('image');
       this.cropper = new Cropper(image, {
         aspectRatio: 1,
         viewMode: 1,
-        background:false,
-        zoomable:false,
+        background: false,
+        zoomable: false,
         ready: function () {
           self.croppable = true;
         }
       });
     },
     methods: {
-      getObjectURL (file) {
-        var url = null ;
-        if (window.createObjectURL!=undefined) { // basic
-          url = window.createObjectURL(file) ;
-        } else if (window.URL!=undefined) { // mozilla(firefox)
-          url = window.URL.createObjectURL(file) ;
-        } else if (window.webkitURL!=undefined) { // webkit or chrome
-          url = window.webkitURL.createObjectURL(file) ;
+      getObjectURL(file) {
+        var url = null;
+        if (window.createObjectURL != undefined) { // basic
+          url = window.createObjectURL(file);
+        } else if (window.URL != undefined) { // mozilla(firefox)
+          url = window.URL.createObjectURL(file);
+        } else if (window.webkitURL != undefined) { // webkit or chrome
+          url = window.webkitURL.createObjectURL(file);
         }
-        return url ;
+        return url;
       },
-      change (e) {
+      change(e) {
         let files = e.target.files || e.dataTransfer.files;
         if (!files.length) return;
         this.panel = true;
@@ -73,12 +73,12 @@
 
         this.url = this.getObjectURL(this.picValue);
         //每次替换图片要重新得到新的url
-        if(this.cropper){
+        if (this.cropper) {
           this.cropper.replace(this.url);
         }
         this.panel = true;
       },
-      crop () {
+      crop() {
         this.panel = false;
         var croppedCanvas;
         var roundedCanvas;
@@ -94,22 +94,22 @@
 
         this.postHeaderImg = roundedCanvas.toDataURL();
         //传递给父组件
-        this.$emit('getHeaderImage',roundedCanvas.toDataURL());
+        this.$emit('getHeaderImage', roundedCanvas.toDataURL());
 
         this.postImg()//上传图片
 
       },
-      getRoundedCanvas (sourceCanvas) {
+      getRoundedCanvas(sourceCanvas) {
 
         var canvas = document.createElement('canvas');
         var context = canvas.getContext('2d');
         var width = sourceCanvas.width;
         var height = sourceCanvas.height;
         //为了每张图片的大小不超过50k,所以不论裁剪多大，最后上传的，最大宽度不超过90。
-        if(width > 90){
+        if (width > 90) {
           width = 90
         }
-        if(height > 90){
+        if (height > 90) {
           height = 90
         }
 
@@ -125,25 +125,25 @@
 
         return canvas;
       },
-      postImg () {
+      postImg() {
         this.$http.post(
           this.http_h + "bp/user/uploadHeadImage",
           {
-            fieldName:this.postHeaderImg
+            fieldName: this.postHeaderImg
           },
-        ).then((res)=>{
+        ).then((res) => {
           let response = res.body;
-          if(response.code == 200){
+          if (response.code == 200) {
             this.$vux.toast.show({
-              type:"success",
+              type: "success",
               text: "上传头像成功",
-              time:1000
+              time: 1000
             })
-          }else{
+          } else {
             this.$vux.toast.show({
-              type:"text",
+              type: "text",
               text: response.message,
-              time:1000
+              time: 1000
             })
           }
         });

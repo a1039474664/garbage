@@ -8,5 +8,5 @@
 export const baseUrl = 'http://localhost:8075'
 
 export default {
-    baseUrl
+  baseUrl
 }

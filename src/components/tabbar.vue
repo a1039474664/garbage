@@ -14,22 +14,20 @@
 
 <script>
   export default {
-    name:"tabBar",
-    props:{
-      tabbarList:Array
+    name: "tabBar",
+    props: {
+      tabbarList: Array
     },
     data() {
-      return {
-      }
+      return {}
     },
-    methods: {
-    }
+    methods: {}
   }
 </script>
 
 <style scoped>
-  .tabbar{
-    width:100%;
+  .tabbar {
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -38,26 +36,31 @@
     bottom: 0px;
     left: 0px;
   }
-  .isActive{
+
+  .isActive {
     color: #09bb07;
   }
-  .tab-item{
-    flex:1;
-    font-size:14px;
-    height:100%;
+
+  .tab-item {
+    flex: 1;
+    font-size: 14px;
+    height: 100%;
   }
-  .item-wrap{
+
+  .item-wrap {
     text-align: center;
     width: 100%;
   }
-  a{
-    text-decoration:none;
-    color:#333;
+
+  a {
+    text-decoration: none;
+    color: #333;
   }
-  a,a:hover,a:active,a:visited,a:link,a:focus{
-    -webkit-tap-highlight-color:rgba(0,0,0,0);
+
+  a, a:hover, a:active, a:visited, a:link, a:focus {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     -webkit-tap-highlight-color: transparent;
-    outline:none;
+    outline: none;
     background: none;
     text-decoration: none;
   }

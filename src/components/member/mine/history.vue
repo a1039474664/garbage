@@ -2,17 +2,18 @@
   <div style="height: 100%;background-color: #FAFAFA;padding-top: 10px;">
     <div class="headClass">
       <el-row>
-<!--
-        <el-col :span="6"><img v-on:click="back" style="margin-top: 5px;margin-left: 5px;" src="../../../assets/images/garbage/back.png"></el-col>
-        <el-col :span="12"><div class="grid-content bg-purple-light" style="padding-top:2px;font-size:18px; text-align: center">我的历史</div></el-col>
--->
+        <!--
+                <el-col :span="6"><img v-on:click="back" style="margin-top: 5px;margin-left: 5px;" src="../../../assets/images/garbage/back.png"></el-col>
+                <el-col :span="12"><div class="grid-content bg-purple-light" style="padding-top:2px;font-size:18px; text-align: center">我的历史</div></el-col>
+        -->
         <el-col :span="18" style="padding-top: 5px;">
           <el-page-header @back="back" content="历史搜索记录">
           </el-page-header>
         </el-col>
         <el-col :span="6">
-          <div class="grid-content bg-purple-light editClass"  style="" v-on:click="toEdit">
-            编辑</div>
+          <div class="grid-content bg-purple-light editClass" style="" v-on:click="toEdit">
+            编辑
+          </div>
         </el-col>
       </el-row>
 
@@ -20,7 +21,9 @@
 
     <div>
       <div v-if="this.allHistory!=''" class="history" v-bind:class="[historyClass ,isEdit ? editHistoryClass : '']">
-        <el-checkbox :indeterminate="isIndeterminate" v-if="isEdit" style="margin-left: 10px;" v-model="checkAll" @change="handleCheckAllChange">全选</el-checkbox>
+        <el-checkbox :indeterminate="isIndeterminate" v-if="isEdit" style="margin-left: 10px;" v-model="checkAll"
+                     @change="handleCheckAllChange">全选
+        </el-checkbox>
         <ul v-for="(item ,i) in allHistory">
           <li class="listClass" v-if="isEdit">
             <el-checkbox :label="item.id" :key="item.id" v-model="checkedGarbage" @change="handleCheckedGarbageChange">
@@ -44,16 +47,19 @@
     </div>
     <div style="height: 30px;position:absolute;bottom: 0px;;width: 100%" v-if="isEdit">
       <el-row>
-        <el-col :span="8"><span style="line-height: 30px;margin-left: 10px;" @click="deleteAllGarbage">一键清空</span></el-col>
+        <el-col :span="8"><span style="line-height: 30px;margin-left: 10px;" @click="deleteAllGarbage">一键清空</span>
+        </el-col>
         <el-col :span="8" style="text-align: center;color: #e8e8e8">|</el-col>
-        <el-col :span="8"><span :disabled="!isEdit" style="float: right;padding-right: 20px;line-height: 30px;" @click="deleteGarbage">删除</span></el-col>
+        <el-col :span="8"><span :disabled="!isEdit" style="float: right;padding-right: 20px;line-height: 30px;"
+                                @click="deleteGarbage">删除</span></el-col>
       </el-row>
     </div>
   </div>
 
 </template>
 <script>
-  import { Message } from 'element-ui';
+  import {Message} from 'element-ui';
+
   export default {
     data() {
       return {
@@ -61,28 +67,28 @@
         checkedGarbage: [],
         Garbage: [],
         isIndeterminate: true,
-        allHistory:[],
-        isEdit:false,
+        allHistory: [],
+        isEdit: false,
         editHistoryClass: 'editHistoryClass',
         historyClass: 'historyClass'
       };
     },
     methods: {
-      findAllHistory(){
+      findAllHistory() {
         //一开始加载搜索历史数据
         this.$api.history.findAll().then((res) => {
           this.editLoading = false
-          if(res.code == 200) {
+          if (res.code == 200) {
             this.allHistory = this.data(res.data);
-            for(let i=0;i<this.allHistory.length;i++){
+            for (let i = 0; i < this.allHistory.length; i++) {
               this.Garbage.push(this.allHistory[i].id);
             }
           } else {
           }
         })
       },
-      toEdit(){
-        this.isEdit=!this.isEdit;
+      toEdit() {
+        this.isEdit = !this.isEdit;
       },
       handleCheckAllChange(val) {
         this.checkedGarbage = val ? this.Garbage : [];
@@ -93,9 +99,9 @@
         this.checkAll = checkedCount === this.Garbage.length;
         this.isIndeterminate = checkedCount > 0 && checkedCount < this.Garbage.length;
       },
-      deleteGarbage(){
-        if(this.checkedGarbage==''){
-          this.$message({ message: '请选择一条记录！', type: 'warning' })
+      deleteGarbage() {
+        if (this.checkedGarbage == '') {
+          this.$message({message: '请选择一条记录！', type: 'warning'})
           return
         }
         this.$confirm("确认删除吗?", "提示", {
@@ -103,10 +109,10 @@
           type: "warning",
           center: true
         }).then(() => {
-          this.$api.history.deleteByIds({'ids':this.checkedGarbage.toString()}).then((res) => {
-            if(res.code == 200) {
-              this.$message({ message: '删除成功！', type: 'success' })
-              this.checkedGarbage=[];
+          this.$api.history.deleteByIds({'ids': this.checkedGarbage.toString()}).then((res) => {
+            if (res.code == 200) {
+              this.$message({message: '删除成功！', type: 'success'})
+              this.checkedGarbage = [];
               this.Garbage = [];
               this.findAllHistory()
             } else {
@@ -114,36 +120,38 @@
             }
           })
         })
-        .catch(() => {})
+          .catch(() => {
+          })
       },
-      deleteAllGarbage(){
+      deleteAllGarbage() {
         this.$confirm("确认删除所有数据吗?", "提示", {
           customClass: 'messageLogout',
           type: "warning"
         }).then(() => {
           this.$api.history.deleteAllGarbage().then((res) => {
-            if(res.code == 200) {
-              this.$message({ message: '删除成功', type: 'success' })
-              this.checkedGarbage=[];
+            if (res.code == 200) {
+              this.$message({message: '删除成功', type: 'success'})
+              this.checkedGarbage = [];
               this.Garbage = [];
               this.findAllHistory()
             } else {
             }
           })
         })
-          .catch(() => {})
+          .catch(() => {
+          })
       },
-      back(){
+      back() {
         this.$router.go(-1);//返回上一层
       },
-      data(history){
-        for(let i=0;i<history.length;i++){
+      data(history) {
+        for (let i = 0; i < history.length; i++) {
           let current = history[i]
-          current.lastUpdateTime=this.format(current.lastUpdateTime,'YYYY-MM-DD hh:mm:ss');
+          current.lastUpdateTime = this.format(current.lastUpdateTime, 'YYYY-MM-DD hh:mm:ss');
         }
         return history;
       },
-      format (date, format) {
+      format(date, format) {
         //时间格式化
         if (!date) {
           return ''
@@ -212,37 +220,42 @@
   }
 </script>
 <style>
-  .listClass{
+  .listClass {
     border-bottom: 1px solid #cccccc;
     margin-left: 10px;
     margin-right: 5px;
     list-style: none;
   }
+
   .el-message-box.messageLogout {
     width: auto;
   }
-  .editClass{
-    padding-top:5px;
-    font-size:16px;
+
+  .editClass {
+    padding-top: 5px;
+    font-size: 16px;
     text-align: right;
     padding-right: 20px;
   }
-  .headClass{
+
+  .headClass {
     height: 38px;
-    position:absolute;
+    position: absolute;
     top: 0px;
     width: 100%
   }
-  .historyClass{
+
+  .historyClass {
     overflow: auto;
-    position:absolute;
+    position: absolute;
     top: 38px;
     width: 100%;
     background-color: white
   }
-  .editHistoryClass{
+
+  .editHistoryClass {
     overflow: auto;
-    position:absolute;
+    position: absolute;
     top: 38px;
     bottom: 30px;
     width: 100%;

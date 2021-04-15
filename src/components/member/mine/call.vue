@@ -4,7 +4,8 @@
     </el-page-header>
     <div style="height: 8px;"></div>
     <div style="background-color: white;height: 100%;">
-      <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" size="mini" style="margin-right: 30px;padding-top: 20px" class="demo-ruleForm">
+      <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" size="mini"
+               style="margin-right: 30px;padding-top: 20px" class="demo-ruleForm">
         <el-form-item label="问题类型" prop="problem">
           <el-select v-model="ruleForm.problem" placeholder="请选择问题类型">
             <el-option label="投诉" value="complaint"></el-option>
@@ -64,17 +65,17 @@
     data() {
       return {
         ruleForm: {
-          contactType:'phone',
-          remark:'',
+          contactType: 'phone',
+          remark: '',
           contact: '',
           region: '',
           desc: '',
-          weChat:'',
+          weChat: '',
         },
         rules: {
 
           problem: [
-            { required: true, message: '请选择问题类型', trigger: 'change' }
+            {required: true, message: '请选择问题类型', trigger: 'change'}
           ]
         }
       };
@@ -85,31 +86,31 @@
           if (valid) {
             this.logining = true;
             console.log("开始写入后台数据！");
-            if(this.ruleForm.contactType=='phone'){
-              if (!this.isvalidPhone(this.ruleForm.phone)&&this.ruleForm.phone!=undefined){
+            if (this.ruleForm.contactType == 'phone') {
+              if (!this.isvalidPhone(this.ruleForm.phone) && this.ruleForm.phone != undefined) {
                 this.$message({
                   message: '请输入正确的11位手机号码',
                   type: 'warning'
                 });
                 return
-              }else{
-                this.ruleForm.contact=this.ruleForm.phone;
+              } else {
+                this.ruleForm.contact = this.ruleForm.phone;
               }
 
-            }else if(this.ruleForm.contactType=='email'){
-              this.ruleForm.contact=this.ruleForm.email;
-            }else if(this.ruleForm.contactType=='qq'){
-              this.ruleForm.contact=this.ruleForm.qq;
-            }else if(this.ruleForm.contactType=='weChat'){
-              this.ruleForm.contact=this.ruleForm.weChat;
+            } else if (this.ruleForm.contactType == 'email') {
+              this.ruleForm.contact = this.ruleForm.email;
+            } else if (this.ruleForm.contactType == 'qq') {
+              this.ruleForm.contact = this.ruleForm.qq;
+            } else if (this.ruleForm.contactType == 'weChat') {
+              this.ruleForm.contact = this.ruleForm.weChat;
             }
 
             let params = Object.assign({}, this.ruleForm)
 
             this.$api.tGcCustomerService.save(params).then((res) => {
               this.editLoading = false
-              if(res.code == 200) {
-                this.$message({ message: '提交成功，请等候客服处理！', type: 'success' })
+              if (res.code == 200) {
+                this.$message({message: '提交成功，请等候客服处理！', type: 'success'})
                 this.resetForm(formName)
               } else {
                 this.$message({message: '操作失败, ' + res.msg, type: 'error'})
@@ -124,7 +125,7 @@
       resetForm(formName) {
         this.$refs[formName].resetFields();
       },
-      back(){
+      back() {
         this.$router.go(-1);//返回上一层
       },
       isvalidPhone(str) {

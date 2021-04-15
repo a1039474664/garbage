@@ -6,7 +6,8 @@
       </div>
       <div v-if="user==''" style=" width:100%;">
         <span style="margin-left: 20px;">
-          <el-avatar icon="el-icon-user-solid" shape="square" style="margin-bottom: -13px;" @click="uploadImage()"></el-avatar>&#160&#160您好，请
+          <el-avatar icon="el-icon-user-solid" shape="square" style="margin-bottom: -13px;"
+                     @click="uploadImage()"></el-avatar>&#160&#160您好，请
           <router-link to="/register">注册</router-link>/
           <router-link to="/login">登录</router-link>
         </span>
@@ -41,9 +42,9 @@
       </ul>
     </div>
     <!--编辑界面-->
-    <el-dialog  width="90%" :visible.sync="editDialogVisible" :close-on-click-modal="false">
+    <el-dialog width="90%" :visible.sync="editDialogVisible" :close-on-click-modal="false">
       <el-form :model="dataForm" label-width="60px" :rules="dataFormRules" ref="dataForm" :size="size">
-        <el-form-item label="ID" prop="id"  v-if="false">
+        <el-form-item label="ID" prop="id" v-if="false">
           <el-input v-model="dataForm.id" :disabled="true" auto-complete="off"></el-input>
         </el-form-item>
         <el-form-item label="昵称" prop="nickname">
@@ -70,13 +71,13 @@
       return {
         size: 'small',
         user: "",
-        nickname :"",
+        nickname: "",
         centerDialogVisible: false,//提示页面是否显示
         editDialogVisible: false, // 编辑界面是否显示
         editLoading: false,
         dataFormRules: {
           name: [
-            { required: true, message: '请输入名称', trigger: 'blur' }
+            {required: true, message: '请输入名称', trigger: 'blur'}
           ]
         },
         // 新增编辑界面数据
@@ -91,39 +92,39 @@
         }
       };
     },
-    methods:{
-      uploadImage: function (){
+    methods: {
+      uploadImage: function () {
         alert("1");
       },
-      toHistory: function() {
-        if (this.user!=null){
-          this.$router.push({path:'/history'});
-        }else{
+      toHistory: function () {
+        if (this.user != null) {
+          this.$router.push({path: '/history'});
+        } else {
           this.$confirm("历史搜索记录需要先登录，是否跳转到登录界面!", "提示", {
             customClass: 'messageLogout',
             type: "warning"
           })
             .then(() => {
-              this.$router.push({path:'/login'});
+              this.$router.push({path: '/login'});
             })
             .catch(() => {
 
             })
         }
       },
-      toCall(){
-        this.$router.push({path:'/call'});
+      toCall() {
+        this.$router.push({path: '/call'});
       },
       // 删除cookie
-      deleteCookie: function(name) {
+      deleteCookie: function (name) {
         Cookies.remove(name)
       },
-      toSetting(){
-        this.$router.push({path:'/setting'})
+      toSetting() {
+        this.$router.push({path: '/setting'})
       },
       // 显示编辑界面
       handleEdit: function () {
-        this.$router.push({path:'/personal'})
+        this.$router.push({path: '/personal'})
         /*this.editDialogVisible = true
         this.$api.user.findByName({"name":sessionStorage.getItem("user")}).then((res) => {
           if(res.code == 200) {
@@ -143,8 +144,8 @@
               this.editLoading = true
               let params = Object.assign({}, this.dataForm)
               this.$api.user.save(params).then((res) => {
-                if(res.code == 200) {
-                  this.$message({ message: '操作成功', type: 'success' })
+                if (res.code == 200) {
+                  this.$message({message: '操作成功', type: 'success'})
                 } else {
                   this.$message({message: '操作失败, ' + res.msg, type: 'error'})
                 }
@@ -155,16 +156,16 @@
           }
         })
       },
-      findUserByName(){
+      findUserByName() {
         let name = sessionStorage.getItem("user")
-        if(name!=null){
-          this.$api.user.findByName({'name':name}).then((res) => {
-            if(res.code == 200) {
-              this.user=res.data.name;
-              if(res.data.nickname!=""&&res.data.nickname!=null){
-                this.nickname=res.data.nickname;
-              }else{
-                this.nickname=res.data.name;
+        if (name != null) {
+          this.$api.user.findByName({'name': name}).then((res) => {
+            if (res.code == 200) {
+              this.user = res.data.name;
+              if (res.data.nickname != "" && res.data.nickname != null) {
+                this.nickname = res.data.nickname;
+              } else {
+                this.nickname = res.data.name;
               }
             } else {
               this.$message({message: '操作失败, ' + res.msg, type: 'error'})
@@ -181,30 +182,36 @@
 </script>
 <style>
 
-  ul{
+  ul {
     width: 100%;
     line-height: 50px;
   }
-  li{
+
+  li {
     background-color: white;
     margin-top: 3px;
   }
-  .login{
+
+  .login {
     height: 140px;
     background-image: url("../../../assets/images/garbage/mineBackgroud.jpg");
   }
-  .imageClass{
+
+  .imageClass {
     margin-bottom: -3px;
     margin-left: 20px;
   }
-  .evaluateClass{
+
+  .evaluateClass {
     float: right;
     margin-right: 30px;
     padding-top: 10px;
   }
-  .helpClass{
+
+  .helpClass {
     margin-left: 10px;
   }
+
   .el-message-box.messageLogout {
     width: auto;
   }
